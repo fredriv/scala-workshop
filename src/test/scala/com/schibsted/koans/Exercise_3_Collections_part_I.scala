@@ -28,14 +28,14 @@ class Exercise_3_Collections_part_I extends FunSuite with Matchers {
   test("Find the numbers below 100") {
     val numbers = List(17, 314, 123, 42, 100)
 
-    val numbersBelowHundred = numbers.filter( ??? ) // fix this
+    val numbersBelowHundred = numbers.filter(_ < 100) // fix this
     assert(numbersBelowHundred === List(17, 42))
   }
 
   test("Find people whose name does not start with the letter 'L'") {
     val names = List("Luke", "Leia", "Anakin", "Han")
 
-    val result = names.filterNot( ??? ) // fix this
+    val result = names.filterNot(_.startsWith("L")) // fix this
     assert(result === List("Anakin", "Han"))
   }
 
@@ -43,7 +43,7 @@ class Exercise_3_Collections_part_I extends FunSuite with Matchers {
     case class Person(name: String, age: Int)
     val people = List(Person("Luke", 19), Person("Leia", 19), Person("Anakin", 42), Person("Han", 29))
 
-    val teens = people.filter( ??? ) // fix this
+    val teens = people.filter(p => p.age >= 13 && p.age <= 19) // fix this
     assert(teens === List(Person("Luke", 19), Person("Leia", 19)))
   }
 
@@ -57,7 +57,7 @@ class Exercise_3_Collections_part_I extends FunSuite with Matchers {
   test("Find lengths of words") {
     val words = "The answer is 42".split(" ")
 
-    val lengths = words.map( ??? ) // fix this
+    val lengths = words.map(_.length) // fix this
     assert(lengths === List(3, 6, 2, 2))
   }
 
@@ -65,7 +65,7 @@ class Exercise_3_Collections_part_I extends FunSuite with Matchers {
     case class Person(name: String, age: Int)
     val people = List(Person("Luke", 19), Person("Leia", 19), Person("Anakin", 42), Person("Han", 29))
 
-    val names = people.map( ??? ) // fix this
+    val names = people.map(_.name) // fix this
     assert(names === List("Luke", "Leia", "Anakin", "Han"))
   }
 
@@ -73,7 +73,7 @@ class Exercise_3_Collections_part_I extends FunSuite with Matchers {
     case class Person(name: String, age: Int)
     val people = List(Person("Luke", 19), Person("Leia", 19), Person("Anakin", 42), Person("Han", 29))
 
-    val names = people.filter( ??? ) // fix this
+    val names = people.filter(p => p.age >= 13 && p.age <= 19).map(_.name) // fix this
     assert(names === List("Luke", "Leia"))
   }
 
@@ -87,7 +87,7 @@ class Exercise_3_Collections_part_I extends FunSuite with Matchers {
   test("Sort words by length") {
     val words = "The answer is 42".split(" ")
 
-    val sorted = words // fix this - hint: sortBy
+    val sorted = words.sortBy(_.length) // fix this
     assert(sorted === List("is", "42", "The", "answer"))
   }
 
@@ -101,21 +101,21 @@ class Exercise_3_Collections_part_I extends FunSuite with Matchers {
   test("Find largest number below 100") {
     val numbers = List(17, 314, 123, 42, 100)
 
-    val largestBelow100 = numbers(0) // fix this
+    val largestBelow100 = numbers.filter(_ < 100).max // fix this
     assert(largestBelow100 === 42)
   }
 
   test("Find average of numbers") {
     val numbers = List(17, 314, 123, 42, 100)
 
-    val average = numbers(0) // fix this
+    val average = numbers.sum / numbers.length // fix this
     assert(average === 119)
   }
 
   test("Find longest word") {
     val words = "The answer is 42".split(" ")
 
-    val longest = words(0) // fix this - hint: maxBy
+    val longest = words.maxBy(_.length) // fix this - hint: maxBy
     assert(longest === "answer")
   }
 

@@ -26,23 +26,23 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
    * =================================
    */
   test("Getting the ball rolling") {
-    assert(false, "This should be true")
+    assert(true, "This should be true")
   }
 
   test("Values can be compared with 'should' matchers") {
-    true should be (__) // should be true
+    true should be (true) // should be true
   }
 
   test("Can test equality with assertions") {
     val v1 = 4
-    val v2 = "foo" // make it equal
+    val v2 = 4 // make it equal
     assert(v1 === v2) // === is an assert from ScalaTest, gives you more control of equality constraints
 
     // What happens if you uncomment 'with TypeCheckedTripleEquals' in class definition at the top?
   }
 
   test("Testing your math skills") {
-    assert(2 + 2 === 5) // fix the equation
+    assert(2 + 2 === 4) // fix the equation
   }
 
   /*
@@ -52,7 +52,7 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
    */
   test("Variables can be reassigned") {
     var a = 5
-    a should be (10) // fix this
+    a should be (5) // fix this
 
     a = 7
     a should be (7)
@@ -78,15 +78,15 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
 
     val numberOfLines = text.split("\n").length
 
-    assert(numberOfLines === __) // fix this
+    assert(numberOfLines === 2) // fix this
   }
 
   test("Use stripMargin to prettify multi-line strings") {
     // use stripMargin to remove leading spaces
     val json =
-      """{
-           "answer": 42
-         }"""
+      """|{
+         |  "answer": 42
+         |}""".stripMargin
 
     val thirteenthCharacterOfSecondLine = json.split("\n")(1).charAt(12)
 
@@ -104,8 +104,8 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
     val p1 = Person("Fredrik", 40)
 
     // fix these
-    p1.name shouldBe __
-    p1.age shouldBe __
+    p1.name shouldBe "Fredrik"
+    p1.age shouldBe 40
   }
 
   test("Equality of case class instances") {
@@ -116,14 +116,14 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
     val p3 = Person("Fredrik", 40)
 
     // fix these
-    (p1 == p2) shouldBe __
-    (p2 == p3) shouldBe __
+    (p1 == p2) shouldBe false
+    (p2 == p3) shouldBe false
 
-    (p1 == p3) shouldBe __
-    (p1 eq p3) shouldBe __ // why?
+    (p1 == p3) shouldBe true
+    (p1 eq p3) shouldBe false // why? merely equal, not same instance
 
-    (p1.name == p3.name) shouldBe __
-    (p1.name eq p3.name) shouldBe __ // why?
+    (p1.name == p3.name) shouldBe true
+    (p1.name eq p3.name) shouldBe true // why? because of string interning
   }
 
   test("Case classes have a convenient toString method") {
@@ -131,16 +131,16 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
 
     val p = Person("Fredrik", 40)
 
-    assert(p.toString === __) // fix this
+    assert(p.toString === "Person(Fredrik,40)") // fix this
   }
 
   test("Case classes can have mutable properties") {
     case class Person(name: String, var age: Int)
 
     val p = Person("Fredrik", 40)
-    p.age should be (__) // fix this
+    p.age should be (40) // fix this
 
     p.age = 41 // but is this a good idea?
-    p.age should be (__) // fix this
+    p.age should be (41) // fix this
   }
 }

@@ -15,7 +15,7 @@ class Exercise_5_Collections_part_II extends FunSuite with Matchers {
   test("Split the odd and even numbers") {
     val numbers = List(17, 42, 314)
 
-    val (even, odd) = numbers.partition( ??? ) // fix this
+    val (even, odd) = numbers.partition(_ % 2 == 0) // fix this
 
     assert(even === List(42, 314))
     assert(odd === List(17))
@@ -31,7 +31,12 @@ class Exercise_5_Collections_part_II extends FunSuite with Matchers {
     val lines = quote.lines.toList
 
     // try doing it both with a flatMap and a for comprehension
-    val words: List[String] = ??? // fix this
+    val words: List[String] = for {
+      line <- lines
+      word <- line.split(" ")
+    } yield word
+
+    // val words = lines.flatMap(_.split(" "))
 
     words should be (List("Try", "not.", "Do...", "or", "do", "not.", "There", "is", "no", "try."))
   }
@@ -40,7 +45,12 @@ class Exercise_5_Collections_part_II extends FunSuite with Matchers {
     val lines = quote.lines.toList
 
     // try doing it both with a flatMap and a for comprehension
-    val lengths: List[Int] = ??? // fix this
+    val lengths: List[Int] = for {
+      line <- lines
+      word <- line.split(" ")
+    } yield word.length
+
+    // val lengths = lines.flatMap(_.split(" ")).map(_.length)
 
     lengths should be (List(3, 4, 5, 2, 2, 4, 5, 2, 2, 4))
   }
@@ -49,7 +59,7 @@ class Exercise_5_Collections_part_II extends FunSuite with Matchers {
   test("Collect just the numbers") {
     val elems: List[Any] = List(17, "This is an String", 42, 314)
     val result = elems.collect {
-      case _ => ???
+      case i: Int => i
     }
     assert(result === List(17, 42, 314))
   }
@@ -57,7 +67,7 @@ class Exercise_5_Collections_part_II extends FunSuite with Matchers {
   test("Collect just the even numbers") {
     val elems: List[Any] = List(17, "This is an String", 42, 314)
     val result = elems.collect {
-      case _ => ???
+      case i: Int if i % 2 == 0 => i
     }
     assert(result === List(42, 314))
   }
@@ -65,7 +75,7 @@ class Exercise_5_Collections_part_II extends FunSuite with Matchers {
   test("Collect just the numbers and add 1 to them") {
     val elems: List[Any] = List(17, "This is an String", 42, 314)
     val result = elems.collect {
-      case _ => ???
+      case i: Int => i + 1
     }
     assert(result === List(18, 43, 315))
   }
@@ -74,7 +84,12 @@ class Exercise_5_Collections_part_II extends FunSuite with Matchers {
     val s = "C1 > C2 > C3"
     val categories = s.split(">").map(_.trim())
 
-    val categoryTree: List[String] = ??? // hint: use scanLeft
+    val categoryTree = categories.scanLeft(""){
+      case ("", y) => y
+      case (x, y) => s"$x.$y"
+    }.tail
+
+    // val categoryTree = categories.tail.scanLeft(categories.head){ case (x, y) => s"$x.$y" }
 
     assert(categoryTree === List("C1", "C1.C2", "C1.C2.C3"))
   }

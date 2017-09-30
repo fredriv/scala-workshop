@@ -26,7 +26,7 @@ class Exercise_4_Classes_and_Pattern_Matching extends FunSuite with Matchers {
    */
 
   test("Get the length of the String if it's there, otherwise -1") {
-    def length(str: Option[String]): Int = ??? // fix this
+    def length(str: Option[String]): Int = str.map(_.length).getOrElse(-1) // fix this
 
     // can you solve this in multiple ways?
 
@@ -44,6 +44,10 @@ class Exercise_4_Classes_and_Pattern_Matching extends FunSuite with Matchers {
     val elements = List(23, "Hello", 8.5, 'q')
 
     val types = elements map {
+      case i: Int => "Int"
+      case s: String => "String"
+      case d: Double => "Double"
+      case c: Char => "Char"
       case _ => "failed" // fix this
     }
 
@@ -56,6 +60,7 @@ class Exercise_4_Classes_and_Pattern_Matching extends FunSuite with Matchers {
     val person = Person("Fredrik", 40)
 
     val name = person match {
+      case Person(name, age) => name
       case _ => "failed" // fix this
     }
 
@@ -66,6 +71,7 @@ class Exercise_4_Classes_and_Pattern_Matching extends FunSuite with Matchers {
     val list = List("Scala", "is", "powerful")
 
     val first = list match {
+      case first :: rest => first
       case _ => "failed" // fix this
     }
 
@@ -76,6 +82,7 @@ class Exercise_4_Classes_and_Pattern_Matching extends FunSuite with Matchers {
     val list = List("Scala", "is", "powerful")
 
     val second = list match {
+      case _ :: second :: rest => second
       case _ => "failed" // fix this
     }
 
