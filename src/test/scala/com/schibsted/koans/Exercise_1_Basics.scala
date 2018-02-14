@@ -123,7 +123,6 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
     (p1 eq p3) shouldBe __ // why?
 
     (p1.name == p3.name) shouldBe __
-    (p1.name eq p3.name) shouldBe __ // why?
   }
 
   test("Case classes have a convenient toString method") {
