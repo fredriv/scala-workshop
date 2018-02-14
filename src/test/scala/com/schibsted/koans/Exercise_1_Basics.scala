@@ -82,7 +82,7 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
   }
 
   test("Use stripMargin to prettify multi-line strings") {
-    // use stripMargin to remove leading spaces
+    // use '|' and stripMargin to remove leading spaces
     val json =
       """{
            "answer": 42
