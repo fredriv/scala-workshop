@@ -113,6 +113,12 @@ class Exercise_2_Expressions_Methods_and_Functions extends FunSuite with Matcher
     assert(shout("Can you hear me?") === "CAN YOU HEAR ME?")
   }
 
+  /*
+   * =================================
+   *             Optional tasks
+   * =================================
+   */
+
   test("Partial functions are only defined for some values in the input domain") {
     val letterOrDigit: PartialFunction[Char, String] = ??? // implement this
 
