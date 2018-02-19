@@ -82,7 +82,7 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
   }
 
   test("Use stripMargin to prettify multi-line strings") {
-    // use stripMargin to remove leading spaces
+    // use '|' and stripMargin to remove leading spaces
     val json =
       """|{
          |  "answer": 42
@@ -123,7 +123,6 @@ class Exercise_1_Basics extends FunSuite with Matchers /* with TypeCheckedTriple
     (p1 eq p3) shouldBe false // why? merely equal, not same instance
 
     (p1.name == p3.name) shouldBe true
-    (p1.name eq p3.name) shouldBe true // why? because of string interning
   }
 
   test("Case classes have a convenient toString method") {

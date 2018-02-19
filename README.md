@@ -2,6 +2,10 @@
 
 This repository contains a set of exercises used in a Scala intro workshop.
 
+## Slides
+
+Slides for the workshop can be found at http://bit.ly/2HqwMVY
+
 ## Setting up the development environment
 
 To use IntelliJ IDEA to work with the exercises, follow these steps:
